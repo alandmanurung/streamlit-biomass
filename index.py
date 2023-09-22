@@ -14,7 +14,7 @@ from pandas import DataFrame
 
 from functions.initiate_reprojection import project
 from functions.raster_values import GetRasterValues
-from .download_dataset import download_drive
+from functions.download_dataset import download_drive
 
 # Preparation
 if not isdir('/dataset/forest_loss'):
