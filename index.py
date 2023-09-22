@@ -1,3 +1,6 @@
+from os.path import join, isdir
+from os import mkdir
+
 import folium
 import streamlit as st
 from folium.plugins import Draw
@@ -11,6 +14,12 @@ from pandas import DataFrame
 
 from functions.initiate_reprojection import project
 from functions.raster_values import GetRasterValues
+from .download_dataset import download_drive
+
+# Preparation
+if not isdir('/dataset/forest_loss'):
+    mkdir('/dataset/forest_loss')
+download_drive('1-pnnuh2MFTNJ-RINvCAKyS0xCbw8Pvk3', '/dataset/forest-loss')
 
 st.session_state.valid_poly = None
 st.session_state.n_poly = None
