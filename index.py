@@ -20,7 +20,7 @@ from functions.download_dataset import download_drive
 if not isdir(join('dataset')):
     mkdir(join('dataset'))
     mkdir(join('dataset', 'forest_loss'))
-download_drive('1-pnnuh2MFTNJ-RINvCAKyS0xCbw8Pvk3', join('dataset', 'forest_loss'))
+    download_drive('1-pnnuh2MFTNJ-RINvCAKyS0xCbw8Pvk3', join('dataset', 'forest_loss'))
 
 st.session_state.valid_poly = None
 st.session_state.n_poly = None
