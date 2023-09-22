@@ -1,5 +1,6 @@
 import sys
 import requests
+from os.path import join
 
 def download_file_from_google_drive(id, destination):
     URL = "https://docs.google.com/uc?export=download&confirm=1"
@@ -35,4 +36,4 @@ def download_drive(file_id, destination):
         file_id = sys.argv[1]
         destination = sys.argv[2]
     print(f"dowload {file_id} to {destination}")
-    download_file_from_google_drive(file_id, destination)
+    download_file_from_google_drive(file_id, join(destination, 'ForestLostYear.tif'))
