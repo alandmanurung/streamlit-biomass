@@ -17,7 +17,7 @@ from functions.raster_values import GetRasterValues
 from functions.download_dataset import download_drive
 
 # Preparation
-if not isdir(join('dataset', 'forest_loss')):
+if not isdir(join('dataset')):
     mkdir(join('dataset'))
     mkdir(join('dataset', 'forest_loss'))
 download_drive('1-pnnuh2MFTNJ-RINvCAKyS0xCbw8Pvk3', join('dataset', 'forest_loss'))
