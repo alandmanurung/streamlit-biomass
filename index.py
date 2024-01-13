@@ -38,7 +38,7 @@ Draw(
     }
     ).add_to(m)
 
-st.title('Data Deforestasi Tahunan')
+st.title('Yearly Deforested Dashboard')
 
 output = st_folium(m, width=700, height=500)
 st.session_state.n_poly = len(output['all_drawings']) if output['all_drawings'] else None
@@ -50,7 +50,7 @@ if st.session_state.valid_poly:
         rectangle_info = shape(st.session_state.valid_poly['geometry'])
         rectangle_psm = transform(project, rectangle_info)
         rectangle_area = uint32(rectangle_psm.area * 0.0001)
-        st.write(f'{rectangle_area} hektar')
+        st.write(f'{rectangle_area} hectare')
 
         try:
             assert rectangle_area < 300000
@@ -59,23 +59,23 @@ if st.session_state.valid_poly:
                 result = GetRasterValues('forest_loss', [rectangle_info])
                 result_df = DataFrame(
                     result.items(),
-                    columns = ['Tahun', 'Area Terdeforestasi (ha)']
+                    columns = ['Year', 'Deforested area (ha)']
                     )
-                result_df['Kumulatif Area Terdeforestasi (ha)'] = result_df['Area Terdeforestasi (ha)'].cumsum()
+                result_df['Cummulative Deforested area (ha)'] = result_df['Deforested area (ha)'].cumsum()
                 st.bar_chart(
                     data = result_df, 
-                    x = 'Tahun',
-                    y = 'Area Terdeforestasi (ha)'
+                    x = 'Year',
+                    y = 'Deforested area (ha)'
                     )
                 st.line_chart(
                     data = result_df,
-                    x = 'Tahun',
-                    y = 'Kumulatif Area Terdeforestasi (ha)'
+                    x = 'Year',
+                    y = 'Kumulatif Deforested area (ha)'
                 )
         except AssertionError:
-            st.error('Kamu memasukkan area lebih dari 300 ribu hektar')
+            st.error('You defined an area of more than 300 thousands hectare')
 
     except AssertionError:
-        st.error('Kamu Memasukkan lebih dari satu Area!')
+        st.error('You defined more than one area!')
 else:
-    st.error('Kamu Belum Memasukkan Area!')
+    st.error('You have not defined an area!')
