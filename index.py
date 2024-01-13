@@ -55,7 +55,7 @@ if st.session_state.valid_poly:
         try:
             assert rectangle_area < 300000
 
-            if st.button('Download Laporan'):
+            if st.button('Show Chart'):
                 result = GetRasterValues('forest_loss', [rectangle_info])
                 result_df = DataFrame(
                     result.items(),
